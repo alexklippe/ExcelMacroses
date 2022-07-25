@@ -1,0 +1,39 @@
+Sub ккеп()
+ Dim x As Integer
+      ' Set numrows = number of rows of data.
+
+      Set sh = Sheets("Отчет")
+      Set dt = Sheets("Лист1")
+
+      ' Establish "For" loop to loop "numrows" number of times.
+      Dim rrn As String
+      For x = 38 To 391
+         ' Insert your code here.
+         ' Selects cell down 1 row from active cell.
+         
+         rrn = sh.Cells(x, "G").Text
+         If rrn = "" Then
+          sh.Cells(x, "M") = ""
+             sh.Cells(x, "N") = ""
+             sh.Cells(x, "O") = ""
+             sh.Cells(x, "P") = ""
+         Else
+         
+         
+         
+         Set fcell = dt.Columns("B:B").Find(rrn)
+        If Not fcell Is Nothing Then
+             sh.Cells(x, "M") = dt.Cells(fcell.Row, "C")
+             sh.Cells(x, "N") = dt.Cells(fcell.Row, "D")
+             If sh.Cells(x, "N") = "" Then
+             sh.Cells(x, "N") = "Ростовская область"
+End If
+             sh.Cells(x, "O") = dt.Cells(fcell.Row, "E")
+             sh.Cells(x, "P") = dt.Cells(fcell.Row, "F")
+             
+             
+        End If
+         End If
+        
+      Next
+End Sub
